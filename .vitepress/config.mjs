@@ -3,6 +3,7 @@ import { set_sidebar } from "../utils/auto-gen-sidebar.mjs"
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  base: '/blog',
   title: "Peckfly's Blog",
   head: [["link", { rel: "icon", href: "/public/favicon.ico" }]],
   description: "A VitePress Site",
