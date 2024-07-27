@@ -5,7 +5,7 @@ import { set_sidebar } from "../utils/auto-gen-sidebar.mjs"
 export default defineConfig({
   base: '/',
   title: "Peckfly's Blog",
-  head: [["link", { rel: "icon", href: "/public/favicon.ico" }]],
+  head: [["link", { rel: "icon", href: "/favicon.ico" }]],
   description: "A VitePress Site",
   themeConfig: {
     outlineTitle: '文章目录',
