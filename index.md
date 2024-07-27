@@ -15,7 +15,7 @@ hero:
       link: /README
     - theme: alt
       text: Github
-      link: https://github.com/peckfly/blog
+      link: https://github.com/peckfly/peckfly.github.io
 
 features:
   - title: 💪努力
