@@ -1,5 +1,20 @@
+# TODO
 
-# Lc Todo
+
+```go
+
+https://codeforces.com/problemset/problem/1937/B
+https://codeforces.com/problemset/problem/1855/B
+
+
+https://leetcode.cn/problems/number-of-matching-subsequences/description/ 匹配子序列的单词数
+
+https://leetcode.cn/problems/minimum-increment-operations-to-make-array-beautiful/
+https://leetcode.cn/problems/ways-to-express-an-integer-as-sum-of-powers/description/
+https://leetcode.cn/problems/count-pairs-of-points-with-distance-k/
+https://leetcode.cn/problems/minimum-impossible-or/
+
+```
 
 ```go
 1696 	1487	Making File Names Unique	保证文件名唯一	making-file-names-unique	weekly-contest-194	Q2
