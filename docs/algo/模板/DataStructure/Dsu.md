@@ -1,4 +1,4 @@
-## 并查集
+# Dsu
 
 ```go
 type Dsu struct {
@@ -35,3 +35,4 @@ func (u *Dsu) Same(x, y int) bool {
 }
 
 ```
+

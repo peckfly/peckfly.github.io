@@ -37,7 +37,7 @@ export default defineConfig({
       {
         text: '算法',
         items: [
-          { text: "模板", link: "/docs/algo/模板/基础/二分" },
+          { text: "模板", link: "/docs/algo/模板/Base/BinarySearch.md" },
         ]
       },
       {
