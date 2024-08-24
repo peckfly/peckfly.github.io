@@ -1,7 +1,7 @@
 # Test 
 
 * 主目录下新建`main.go`文件
-* 主目录下新建`fuzz`目录
+* 主目录下新建`fuzz`目录, `fuzz`目录下新建`tmp`目录
 * fuzz目录下新建`rand.go`，`test.go`，`test.sh`，`correct.go`，`correct.cpp`文件
 * 运行`test.go`
 
