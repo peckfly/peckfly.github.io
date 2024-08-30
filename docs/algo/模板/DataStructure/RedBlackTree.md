@@ -1,6 +1,5 @@
 # Red Black Tree
 
-
 ```go
 type Color bool
 
@@ -20,9 +19,14 @@ type RbTree[K Ordered, V any] struct {
 	multi  bool
 }
 
-// NewTree creates a new RbTree
-func NewTree[K Ordered, V any](multi bool) *RbTree[K, V] {
-	return &RbTree[K, V]{keyCmp: OrderedTypeCmp[K], multi: multi}
+// NewTreeMap creates a new RbTree
+func NewTreeMap[K Ordered, V any]() *RbTree[K, V] {
+	return &RbTree[K, V]{keyCmp: OrderedTypeCmp[K], multi: false}
+}
+
+// NewMultiTreeMap creates a new RbTree
+func NewMultiTreeMap[K Ordered, V any]() *RbTree[K, V] {
+	return &RbTree[K, V]{keyCmp: OrderedTypeCmp[K], multi: false}
 }
 
 // Clear clears the RbTree

@@ -5,7 +5,7 @@ type fenwick[T, R ~int | ~int64] struct {
 	tr []T
 }
 
-func newFenwickTree[T, R ~int | ~int64](n int) fenwick[T, R] {
+func NewFenwickTree[T, R ~int | ~int64](n int) fenwick[T, R] {
 	return fenwick[T, R]{make([]T, n+1)}
 }
 

@@ -7,6 +7,10 @@
 // 用两个 slice 头对头拼在一起实现
 type Deque[T any] struct{ l, r []T }
 
+func NewDeque[T any]() *Deque[T] {
+    return &Deque[T]{}
+}
+
 func (q *Deque[T]) Empty() bool {
 	return len(q.l) == 0 && len(q.r) == 0
 }

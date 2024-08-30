@@ -1,7 +1,6 @@
 # Mono Queue
 
 ```go
-
 // MqData https://oi-wiki.org/ds/monotonous-queue/#%E8%BF%87%E7%A8%8B
 // https://www.luogu.com.cn/record/101022424
 type MqData[T ~int | ~int64 | ~string] struct {
@@ -16,6 +15,10 @@ type MonoQueue[T ~int | ~int64 | ~string] struct {
 	Data []MqData[T]
 	Size int // 单调队列对应的区间的长度
 	Less func(i, j T) bool
+}
+
+func NewMonoQueue[T ~int | ~int64 | ~string](less func(i, j T) bool) *MonoQueue[T] {
+	return &MonoQueue[T]{Less: less}
 }
 
 func (mq *MonoQueue[T]) Push(v T) {
@@ -42,6 +45,11 @@ func (mq *MonoQueue[T]) Pop() {
 func (mq *MonoQueue[T]) Top() T {
 	return mq.Data[0].Val
 }
+```
+
+例子
+
+```go
 
 // https://leetcode.cn/problems/sliding-window-maximum/
 func maxSlidingWindow(a []int, k int) []int {
