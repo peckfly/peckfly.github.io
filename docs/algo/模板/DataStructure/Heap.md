@@ -21,6 +21,6 @@ func (h *Heap[T]) Pop() interface{}   { a := h.arr; v := a[len(a)-1]; h.arr = a[
 
 func (h *Heap[T]) push(v T) { heap.Push(h, v) }
 func (h *Heap[T]) pop() T   { return heap.Pop(h).(T) }
-func (h *Heap[T]) top() T   { return h.arr[0] }}
+func (h *Heap[T]) top() T   { return h.arr[0] }
 
 ```

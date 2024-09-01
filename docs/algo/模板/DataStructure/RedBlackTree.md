@@ -1,12 +1,21 @@
 # Red Black Tree
 
 ```go
-type Color bool
+func NewMap[K Ordered, V any]() *RbTree[K, V] {
+	return &RbTree[K, V]{keyCmp: OrderedTypeCmp[K], multi: false}
+}
 
-const (
-	RED   = false
-	BLACK = true
-)
+func NewMultiMap[K Ordered, V any]() *RbTree[K, V] {
+	return &RbTree[K, V]{keyCmp: OrderedTypeCmp[K], multi: true}
+}
+
+func NewSet[K Ordered]() *RbTree[K, PlaceholderType] {
+	return &RbTree[K, PlaceholderType]{keyCmp: OrderedTypeCmp[K], multi: false}
+}
+
+func NewMultiSet[K Ordered]() *RbTree[K, PlaceholderType] {
+	return &RbTree[K, PlaceholderType]{keyCmp: OrderedTypeCmp[K], multi: true}
+}
 
 // RbTree is a kind of self-balancing binary search tree in computer science.
 // Each node of the binary tree has an extra bit, and that bit is often interpreted
@@ -17,16 +26,6 @@ type RbTree[K Ordered, V any] struct {
 	size   int
 	keyCmp Comparator[K]
 	multi  bool
-}
-
-// NewTreeMap creates a new RbTree
-func NewTreeMap[K Ordered, V any]() *RbTree[K, V] {
-	return &RbTree[K, V]{keyCmp: OrderedTypeCmp[K], multi: false}
-}
-
-// NewMultiTreeMap creates a new RbTree
-func NewMultiTreeMap[K Ordered, V any]() *RbTree[K, V] {
-	return &RbTree[K, V]{keyCmp: OrderedTypeCmp[K], multi: false}
 }
 
 // Clear clears the RbTree
@@ -202,8 +201,8 @@ func (t *RbTree[K, V]) Delete(node *Node[K, V]) {
 	t.size--
 }
 
-// DeleteAllKey erases the key in the MultiMap
-func (t *RbTree[K, V]) DeleteAllKey(key K) {
+// Erase delete erases the key in the MultiMap
+func (t *RbTree[K, V]) Erase(key K) {
 	for {
 		node := t.FindNode(key)
 		if node == nil {
@@ -575,13 +574,22 @@ func OrderedTypeCmp[T Ordered](a, b T) int {
 	return 1
 }
 
-type Ordered interface {
-	~int | ~int64 | ~uint64 | ~float64 | ~string
-}
+const (
+	RED   = false
+	BLACK = true
+)
 
-type Comparator[T any] func(a, b T) int
+type (
+	Ordered interface {
+		~int | ~int64 | ~uint64 | ~float64 | ~string
+	}
+	Color             bool
+	PlaceholderType   = struct{}
+	Comparator[T any] func(a, b T) int
+	// KvVisitor is a function use to visit a key-value type data structure
+	KvVisitor[K, V any] func(key K, value V) bool
+)
 
-// KvVisitor is a function use to visit a key-value type data structure
-type KvVisitor[K, V any] func(key K, value V) bool
+var Placeholder PlaceholderType
 
 ```

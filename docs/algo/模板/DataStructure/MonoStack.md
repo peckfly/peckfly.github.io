@@ -6,7 +6,7 @@
 // https://www.luogu.com.cn/record/101599598
 // f: i <= j --> max
 // f: i >= j --> min
-func monoStackLeft[T any](a []T, f func(T, T) bool) []int {
+func monoLeft[T any](a []T, f func(T, T) bool) []int {
 	n := len(a)
 	r := make([]int, n)
 	var s []int
@@ -28,7 +28,7 @@ func monoStackLeft[T any](a []T, f func(T, T) bool) []int {
 // https://www.luogu.com.cn/record/101599598
 // f: i <= j --> max
 // f: i >= j --> min
-func monoStackRight[T any](a []T, f func(T, T) bool) []int {
+func monoRight[T any](a []T, f func(T, T) bool) []int {
 	n := len(a)
 	r := make([]int, n)
 	var s []int

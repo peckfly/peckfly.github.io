@@ -50,12 +50,11 @@ func (mq *MonoQueue[T]) Top() T {
 例子
 
 ```go
-
 // https://leetcode.cn/problems/sliding-window-maximum/
 func maxSlidingWindow(a []int, k int) []int {
 	n := len(a)
 	var ans []int
-	qMax := &MonoQueue[int]{Less: func(i, j int) bool { return a[i] <= a[j] }}
+	qMax := NewMonoQueue[int](func(i, j int) bool { return a[i] <= a[j] })
 	for i := 0; i < n; i++ {
 		if qMax.Size >= k {
 			qMax.Pop()
@@ -67,5 +66,6 @@ func maxSlidingWindow(a []int, k int) []int {
 	}
 	return ans
 }
+
 
 ```

@@ -2,12 +2,14 @@
 # Compress Array
 
 ```go
-
-import "sort"
-
 type CompressArray[T ~int | ~int64 | ~float64 | ~string] struct {
 	v T
 	i int
+}
+
+func NewCompressArray[T ~int | ~int64 | ~float64 | ~string](a []T, startIndex int) (kth []int) {
+	c := &CompressArray[T]{}
+	return c.compress(a, startIndex)
 }
 
 func (*CompressArray[T]) compress(a []T, startIndex int) (kth []int) {

@@ -1,29 +1,32 @@
 # Dijkstra
 
-```go
-import "container/heap"
+*  https://www.bilibili.com/video/BV1RK4y1d7ct?t=214.0&p=2
+*  https://www.luogu.com.cn/record/115759630
 
-// https://www.bilibili.com/video/BV1RK4y1d7ct?t=214.0&p=2
-// https://www.luogu.com.cn/record/115759630
-type dijkstraPairType interface {
-	~int | ~int64 | string
+```go
+type Heap[T any] struct {
+	arr     []T
+	compare func(i, j T) bool
 }
-type dijkstraPair[T dijkstraPairType] struct {
-	val T
-	// 其他
+
+func NewHeap[T any](compare func(i, j T) bool) *Heap[T] {
+	return &Heap[T]{compare: compare}
+}
+
+func (h *Heap[T]) Len() int           { return len(h.arr) }
+func (h *Heap[T]) Less(i, j int) bool { return h.compare(h.arr[i], h.arr[j]) }
+func (h *Heap[T]) Swap(i, j int)      { h.arr[i], h.arr[j] = h.arr[j], h.arr[i] }
+func (h *Heap[T]) Push(v interface{}) { h.arr = append(h.arr, v.(T)) }
+func (h *Heap[T]) Pop() interface{}   { a := h.arr; v := a[len(a)-1]; h.arr = a[:len(a)-1]; return v }
+
+func (h *Heap[T]) push(v T) { heap.Push(h, v) }
+func (h *Heap[T]) pop() T   { return heap.Pop(h).(T) }
+func (h *Heap[T]) top() T   { return h.arr[0] }
+
+type dijkstraPair struct {
+	val int
 	dis int64
 }
-type dijkstraHeap[T dijkstraPairType] []dijkstraPair[T]
-
-func (h *dijkstraHeap[T]) Len() int           { return len(*h) }
-func (h *dijkstraHeap[T]) Less(i, j int) bool { return (*h)[i].dis < (*h)[j].dis } // < 为最小堆
-func (h *dijkstraHeap[T]) Swap(i, j int)      { (*h)[i], (*h)[j] = (*h)[j], (*h)[i] }
-func (h *dijkstraHeap[T]) Push(v interface{}) { *h = append(*h, v.(dijkstraPair[T])) }
-func (h *dijkstraHeap[T]) Pop() interface{}   { a := *h; v := a[len(a)-1]; *h = a[:len(a)-1]; return v }
-
-func (h *dijkstraHeap[T]) push(v dijkstraPair[T]) { heap.Push(h, v) }
-func (h *dijkstraHeap[T]) pop() dijkstraPair[T]   { return heap.Pop(h).(dijkstraPair[T]) }
-func (h *dijkstraHeap[T]) top() dijkstraPair[T]   { return (*h)[0] }
 
 type edge struct {
 	to int
@@ -43,8 +46,11 @@ func dijkstra(g [][]edge, n, start int) (dist []int64) {
 	for i := range fa {
 		fa[i] = -1
 	}
-	h := dijkstraHeap[int]{{start, 0}}
-	for len(h) > 0 {
+	h := NewHeap[dijkstraPair](func(i, j dijkstraPair) bool {
+		return i.dis < j.dis
+	})
+	h.Push(dijkstraPair{start, 0})
+	for h.Len() > 0 {
 		p := h.pop()
 		ver := p.val
 		d := p.dis
@@ -57,11 +63,10 @@ func dijkstra(g [][]edge, n, start int) (dist []int64) {
 			if dist[e.to] > d+w {
 				dist[e.to] = d + w
 				fa[e.to] = ver
-				h.push(dijkstraPair[int]{e.to, dist[e.to]})
+				h.push(dijkstraPair{e.to, dist[e.to]})
 			}
 		}
 	}
-
 	// EXTRA: path from end to start
 	// 记录边的编号 https://codeforces.com/problemset/problem/507/E
 	//var path []int
@@ -71,6 +76,9 @@ func dijkstra(g [][]edge, n, start int) (dist []int64) {
 	//}
 	return
 }
+```
+稠密图版本
+```go
 
 // 稠密图版本: https://icpc.qlu.edu.cn/solution/detail?id=94980, dx算法
 func dijkstra2(g [][]int64, start int) []int64 {
