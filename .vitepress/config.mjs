@@ -17,15 +17,14 @@ export default defineConfig({
       { text: '后端',
         items: [
           { text: "Java", link: "/docs/backend/java" },
-          { text: "Go", link: "/docs/backend/go" },
+          { text: "Go", link: "/docs/backend/go" }
         ]
       },
       {
         text: '基础',
         items: [
           { text: "计算机网络", link: "/docs/cs-基础/network" },
-          { text: "操作系统", link: "/docs/cs-基础/os" },
-          { text: "Linux", link: "/docs/cs-基础/linux" },
+          { text: "操作系统", link: "/docs/cs-基础/os" }
         ]
       },
       {
@@ -37,7 +36,7 @@ export default defineConfig({
       {
         text: '算法',
         items: [
-          { text: "模板", link: "/docs/algo/模板/Base/BinarySearch.md" },
+          { text: "模板", link: "/docs/algo/模板" },
         ]
       },
       {
